@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+<p style="color: red"><%= alert %></p>
+
+<h1>Parse tasks</h1>
+
+<div id="parse_tasks">
+  <% @parse_tasks.each do |parse_task| %>
+    <%= render parse_task %>
+    <p>
+      <%= link_to "Show this parse task", parse_task %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New parse task", new_parse_task_path %>
+
+<%= turbo_stream_from "log" %>
+<h1> Parsing log </h1>
+<div id="log">
+	<ul>
+	</ul>
+</div>

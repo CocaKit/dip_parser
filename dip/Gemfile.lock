@@ -84,6 +84,7 @@ GEM
     childprocess (4.1.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
+    curb (1.0.0)
     debug (1.5.0)
       irb (>= 1.3.6)
       reline (>= 0.2.7)
@@ -186,6 +187,7 @@ GEM
     regexp_parser (2.3.0)
     reline (0.3.1)
       io-console (~> 0.5)
+    render_async (2.1.11)
     rexml (3.2.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.1.0)
@@ -225,6 +227,7 @@ GEM
     websocket-driver (0.7.5-java)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    work_queue (2.5.4)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.5.4)
@@ -240,12 +243,15 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capybara
+  curb
   debug
   importmap-rails
   jbuilder
+  nokogiri
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.2, >= 7.0.2.3)
+  render_async
   selenium-webdriver
   sprockets-rails
   stimulus-rails
@@ -253,6 +259,7 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webdrivers
+  work_queue
 
 RUBY VERSION
    ruby 2.7.0p0

@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  web_site: 1
+  status: 1
+  category_names: MyString
+  page_urls: MyString
+  finish_date: 2022-05-02
+
+two:
+  name: MyString
+  web_site: 1
+  status: 1
+  category_names: MyString
+  page_urls: MyString
+  finish_date: 2022-05-02

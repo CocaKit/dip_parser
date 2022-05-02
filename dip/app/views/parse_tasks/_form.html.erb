@@ -1,0 +1,42 @@
+<%= form_with(model: parse_task) do |form| %>
+  <% if parse_task.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(parse_task.errors.count, "error") %> prohibited this parse_task from being saved:</h2>
+
+      <ul>
+        <% parse_task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :web_site, style: "display: block" %>
+	<%= form.select :web_site, [["Litres.ru", "1"]] %>
+  </div>
+
+  <div>
+	<%= form.hidden_field :status, value: "1" %>
+  </div>
+
+  <div>
+	<%= form.label :classic, "Classic" %>
+	<%= form.check_box :classic %>
+
+	<%= form.label :fantasy, "Fantasy" %>
+	<%= form.check_box :fantasy %>
+
+	<%= form.label :detective, "Detective" %>
+	<%= form.check_box :detective %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

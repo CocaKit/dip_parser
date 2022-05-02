@@ -1,0 +1,43 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  author: MyString
+  series: MyString
+  grade_litres: 1.5
+  grade_livelib: 1.5
+  evaluators_litres: 1
+  evaluators_livelib: 1
+  genre: MyString
+  tags: MyString
+  age_limit: MyString
+  release_on_website: 2022-04-26
+  release_on_world: 2022-04-26
+  size_pages: 1
+  size_time: 1
+  copyright: MyString
+  book_type: MyString
+  price: 1.5
+  description: MyText
+  page_url: MyString
+
+two:
+  name: MyString
+  author: MyString
+  series: MyString
+  grade_litres: 1.5
+  grade_livelib: 1.5
+  evaluators_litres: 1
+  evaluators_livelib: 1
+  genre: MyString
+  tags: MyString
+  age_limit: MyString
+  release_on_website: 2022-04-26
+  release_on_world: 2022-04-26
+  size_pages: 1
+  size_time: 1
+  copyright: MyString
+  book_type: MyString
+  price: 1.5
+  description: MyText
+  page_url: MyString
