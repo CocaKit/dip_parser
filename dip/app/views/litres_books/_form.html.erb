@@ -1,0 +1,40 @@
+<%= form_with url: search_litres_books_url, method: :post do |form| %>
+	<div>
+		<%= form.label :name, style: "display: block" %>
+		<%= form.text_field :name %>
+	</div>
+
+	<div>
+		<%= form.label :author, style: "display: block" %>
+		<%= form.text_field :author %>
+	</div>
+
+	<div>
+		<%= form.label :series, style: "display: block" %>
+		<%= form.text_field :series %>
+	</div>
+
+	<div>
+		<%= form.label :min_litres_grade, style: "display: block" %>
+		<%= form.number_field :min_litres_grade, in: 0.0..5.0, step: 0.1, value: 0.0 %>
+	</div>
+
+	<div>
+		<%= form.label :max_litres_grade, style: "display: block" %>
+		<%= form.number_field :max_litres_grade, in: 0.0..5.0, step: 0.1, value: 5.0 %>
+	</div>
+
+	<div>
+		<%= form.label :min_litres_count_of_evaluators, style: "display: block" %>
+		<%= form.number_field :min_litres_count_of_evaluators, in: 0..1000000, step: 1, value: 00 %>
+	</div>
+
+	<div>
+		<%= form.label :max_litres_count_of_evaluators, style: "display: block" %>
+		<%= form.number_field :max_litres_count_of_evaluators, in: 0..1000000, step: 1, value: 1000000 %>
+	</div>
+
+	<div>
+		<%= form.submit %>
+	</div>
+<% end %>

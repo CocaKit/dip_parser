@@ -1,4 +1,18 @@
-<h1>test</h1>
-<form action="litres_books/parse">
-    <input type="submit" value="Go to Google" />
-</form>
+<p style="color: green"><%= notice %></p>
+<p style="color: red"><%= alert %></p>
+
+<h1>Litres books</h1>
+
+<%= turbo_stream_from "search_form" %>
+<div id="search_form">
+	<%= render partial: "form" %>
+</div>
+
+<div>
+	<%= button_to "Export", "/litres_books/export.csv", method: "post" %>
+</div>
+
+<%= turbo_stream_from "litres_books" %>
+<%= turbo_stream_from "litres_books_page" %>
+<div id="litres_books">
+</div>

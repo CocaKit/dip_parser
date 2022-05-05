@@ -1,9 +1,74 @@
-<h1>LitresBooks#log</h1>
-
-<ul>
-  <% books.each do |book| %>
-    <li>
-      <%= book.name %>
-    </li>
-  <% end %>
-</ul>
+<img width="300" height="500" src="<%= @litres_book.img %>" >
+<p>
+	<strong>Name:</strong>
+	<%= @litres_book.name %>
+</p>
+<p>
+	<strong>Author:</strong>
+	<%= @litres_book.author %>
+</p>
+<p>
+	<strong>Main genre:</strong>
+	<%= @litres_book.main_genre %>
+</p>
+<p>
+	<strong>Series:</strong>
+	<%= @litres_book.series %>
+</p>
+<p>
+	<strong>Grade(litres):</strong>
+	<%= @litres_book.grade_litres %>
+</p>
+<p>
+	<strong>Grade(livelib):</strong>
+	<%= @litres_book.grade_livelib %>
+</p>
+<p>
+	<strong>Count of evaluators(litres):</strong>
+	<%= @litres_book.evaluators_litres %>
+</p>
+<p>
+	<strong>Count of evaluators(livelib):</strong>
+	<%= @litres_book.evaluators_livelib %>
+</p>
+<p>
+	<strong>Genres:</strong>
+	<%= @litres_book.genres %>
+</p>
+<p>
+	<strong>Tags:</strong>
+	<%= @litres_book.tags %>
+</p>
+<p>
+	<strong>Age limit:</strong>
+	<%= @litres_book.age_limit %>
+</p>
+<p>
+	<strong>Release date on web-site:</strong>
+	<%= @litres_book.release_on_website %>
+</p>
+<p>
+	<strong>Release date in world:</strong>
+	<%= @litres_book.release_on_world %>
+</p>
+<p>
+	<strong>Translate release date:</strong>
+	<%= @litres_book.release_translate %>
+</p>
+<p>
+	<strong>Amount of page:</strong>
+	<%= @litres_book.book_size %>
+</p>
+<p>
+	<strong>ISBN:</strong>
+	<%= @litres_book.isbn %>
+</p>
+<p>
+	<strong>Price:</strong>
+	<%= @litres_book.price %>
+</p>
+<p>
+	<strong>Description:</strong>
+	<%= @litres_book.description %>
+</p>
+<%= link_to "To source page", @litres_book.page_url %>

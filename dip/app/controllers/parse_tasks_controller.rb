@@ -66,11 +66,15 @@ class ParseTasksController < ApplicationController
 	end
 
 	def parse
-		if @parse_task.update(status: 2)
-			redirect_to parse_task_url(@parse_task), notice: "Parse task was successfully added to queue." 
-			LitresBookParseJob.perform_later(@parse_task.page_urls, @parse_task)
-		else 
-			redirect_to parse_task_url(@parse_task), alert: "Parse failed." 
+		if check_running_job 
+			redirect_to parse_task_url(@parse_task), alert: "Parse failed, task in progress." 
+		else
+			if @parse_task.update(status: 2)
+				redirect_to parse_task_url(@parse_task), notice: "Parse task was successfully added to queue." 
+				LitresBookParseJob.perform_later(@parse_task.page_urls, @parse_task)
+			else 
+				redirect_to parse_task_url(@parse_task), alert: "Parse failed." 
+			end
 		end
 	end
 
@@ -100,6 +104,10 @@ class ParseTasksController < ApplicationController
 				@page_urls.push("https://www.litres.ru/knigi-detektivy/")
 			end
 		end
+	end
+
+	def check_running_job
+		return ParseTask.find_by(status: 2) != nil
 	end
 
     # Only allow a list of trusted parameters through.

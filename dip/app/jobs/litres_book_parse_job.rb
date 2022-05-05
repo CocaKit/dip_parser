@@ -1,12 +1,12 @@
 class LitresBookParseJob < ApplicationJob
-	queue_as :default
+	queue_as :myjob
 
 
 	def perform(source_urls, parse_task)
 		for source_url in source_urls
 			parse_category(source_url)
 		end
-		parse_task.update(status: 3)
+		parse_task.update(status: 3, finish_date: DateTime.now)
 	end
 
 	private
@@ -34,8 +34,9 @@ class LitresBookParseJob < ApplicationJob
 		isbn = html_origin.xpath("//div[@class='biblio_book_info_detailed']/div/ul[@class='biblio_book_info_detailed_right']/li/strong[text()='ISBN:']/../span/text()").to_s.strip
 		book_price = html_origin.xpath("//button[@class='coolbtn a_buyany btn-green']/span[@class='simple-price']/text()").to_s.to_i
 		book_description = html_origin.xpath("//div[@class='biblio_book_descr_publishers']/p/text()").to_s
+		book_img = html_origin.xpath("//div[@class='cover']//img/@src").to_s
 
-		return book_name, author, series, grade_litres, grade_litres, grade_livelib, evaluators_litres, evaluators_livelib, genres, tags, age_limit, release_website, release_world, release_translate, book_size, isbn, book_price, book_description
+		return book_name, author, series, grade_litres, grade_litres, grade_livelib, evaluators_litres, evaluators_livelib, genres, tags, age_limit, release_website, release_world, release_translate, book_size, isbn, book_price, book_description, book_img
 	end
 	
 	def console_output(book_name, author, series, grade_litres, grade_livelib, evaluators_litres, evaluators_livelib, genres, tags, age_limit, release_website, release_world, release_translate, book_size, isbn, book_price, book_description, source_url)
@@ -114,9 +115,9 @@ class LitresBookParseJob < ApplicationJob
 		hash_array = []
 		for i in 0...book_htmls.length
 			if check_book_format(book_htmls[i]) == "Текст"
-				book_name, author, series, grade_litres, grade_litres, grade_livelib, evaluators_litres, evaluators_livelib, genres, tags, age_limit, release_website, release_world, release_translate, book_size, isbn, book_price, book_description = get_book_info(book_htmls[i])
+				book_name, author, series, grade_litres, grade_litres, grade_livelib, evaluators_litres, evaluators_livelib, genres, tags, age_limit, release_website, release_world, release_translate, book_size, isbn, book_price, book_description, book_img = get_book_info(book_htmls[i])
 				write_log("Book parsed: #{book_name}")
-				hash_array.push( { main_genre: main_genre, name: book_name, author: author, series: series, grade_litres: grade_litres, grade_livelib: grade_livelib, evaluators_litres: evaluators_litres, evaluators_livelib: evaluators_livelib, genres: genres, tags: tags, age_limit: age_limit, release_on_website: release_website, release_on_world: release_world, release_translate: release_translate, book_size: book_size, isbn: isbn, price: book_price, description: book_description, page_url: book_urls[i] } )
+				hash_array.push( { main_genre: main_genre, name: book_name, author: author, series: series, grade_litres: grade_litres, grade_livelib: grade_livelib, evaluators_litres: evaluators_litres, evaluators_livelib: evaluators_livelib, genres: genres, tags: tags, age_limit: age_limit, release_on_website: release_website, release_on_world: release_world, release_translate: release_translate, book_size: book_size, isbn: isbn, price: book_price, description: book_description, page_url: book_urls[i], img: book_img } )
 			end
 		end
 
@@ -139,6 +140,6 @@ class LitresBookParseJob < ApplicationJob
 	end
 
 	def write_log(msg)
-		Turbo::StreamsChannel.broadcast_append_to('log', partial: 'litres_books/log', locals: { log: msg }, target: "log") 
+		Turbo::StreamsChannel.broadcast_append_to("log", partial: "parse_tasks/log", locals: { log: msg }, target: "log") 
 	end
 end

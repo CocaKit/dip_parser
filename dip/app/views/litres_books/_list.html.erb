@@ -1,0 +1,10 @@
+<% litres_books.each do |litres_book| %>
+	<%= render partial: "litres_book_demo", locals: { litres_book: litres_book } %>
+	<p>
+		<%= link_to "Show this litres book", litres_book %>
+	</p>
+<% end %>
+
+<div id="litres_books_page">
+	<%= button_to "Naxt page", page_litres_book_url(page_num), method: "post" %>
+</div>
