@@ -1,40 +1,56 @@
-<%= form_with url: search_litres_books_url, method: :post do |form| %>
-	<div>
-		<%= form.label :name, style: "display: block" %>
-		<%= form.text_field :name %>
+<%= form_with url: search_litres_books_url, class: "row g-3", method: :post do |form| %>
+	<div class="col-md-12">
+		<%= form.label :name, class: "form-label", for: "inputName" %>
+		<%= form.text_field :name, class: "form-control", id: "inputName" %>
 	</div>
 
-	<div>
-		<%= form.label :author, style: "display: block" %>
-		<%= form.text_field :author %>
+	<div class="col-md-12">
+		<%= form.label :author, class: "form-label", for: "inputAuthor" %>
+		<%= form.text_field :author, class: "form-control", id: "inputAuthor" %>
 	</div>
 
-	<div>
-		<%= form.label :series, style: "display: block" %>
-		<%= form.text_field :series %>
+	<div class="col-md-12"> 
+		<%= form.label :series, class: "form-label", for: "inputSeries" %>
+		<%= form.text_field :series, class: "form-control", id: "inputSeries" %>
 	</div>
 
-	<div>
-		<%= form.label :min_litres_grade, style: "display: block" %>
-		<%= form.number_field :min_litres_grade, in: 0.0..5.0, step: 0.1, value: 0.0 %>
+	<div class="col-md-6"> 
+		<%= form.label :min_litres_grade, class: "form-label", for: "inputMinGrade" %>
+		<%= form.number_field :min_litres_grade, in: 0.0..5.0, step: 0.1, value: 0.0, id: "inputMinGrade", class: "form-control" %>
 	</div>
 
-	<div>
-		<%= form.label :max_litres_grade, style: "display: block" %>
-		<%= form.number_field :max_litres_grade, in: 0.0..5.0, step: 0.1, value: 5.0 %>
+	<div class="col-md-6"> 
+		<%= form.label :max_litres_grade, class: "form-label", for: "inputMaxGrade" %>
+		<%= form.number_field :max_litres_grade, in: 0.0..5.0, step: 0.1, value: 5.0, id: "inputMaxGrade", class: "form-control" %>
 	</div>
 
-	<div>
-		<%= form.label :min_litres_count_of_evaluators, style: "display: block" %>
-		<%= form.number_field :min_litres_count_of_evaluators, in: 0..1000000, step: 1, value: 00 %>
+	<div class="col-md-6"> 
+		<%= form.label :min_litres_count_of_evaluators, class: "form-label", for: "inputMinEval" %>
+		<%= form.number_field :min_litres_count_of_evaluators, in: 0..1000000, step: 1, value: 0, id: "inputMinEval", class: "form-control" %>
 	</div>
 
-	<div>
-		<%= form.label :max_litres_count_of_evaluators, style: "display: block" %>
-		<%= form.number_field :max_litres_count_of_evaluators, in: 0..1000000, step: 1, value: 1000000 %>
+	<div class="col-md-6"> 
+		<%= form.label :max_litres_count_of_evaluators, class: "form-label", for: "inputMaxEval" %>
+		<%= form.number_field :max_litres_count_of_evaluators, in: 0..1000000, step: 1, value: 1000000, id: "inputMaxEval", class: "form-control" %>
 	</div>
 
-	<div>
-		<%= form.submit %>
+	<div class="col-md-6"> 
+		<%= form.label :min_price, class: "form-label", for: "inputMinPrice" %>
+		<%= form.number_field :min_price, in: 0..1000000, step: 1, value: 0, id: "inputMinPrice", class: "form-control" %>
+	</div>
+
+	<div class="col-md-6"> 
+		<%= form.label :max_price, class: "form-label", for: "inputMaxPrice" %>
+		<%= form.number_field :max_price, in: 0..1000000, step: 1, value: 1000000, id: "inputMaxPrice", class: "form-control" %>
+	</div>
+
+	<div class="col-md-12"> 
+		<%= form.label :tags_genres, class: "form-label", for: "inputTagsGenres" %>
+		<%= form.text_area :tags_genres, id: "inputTagsGenres", class: "form-control" %>
+		<div id="tagsGenresHelp" class="form-text">List tags and genres separated by commas</div>
+	</div>
+
+	<div class="col-md-12">
+		<%= form.submit "Search", class: "btn btn-primary" %>
 	</div>
 <% end %>

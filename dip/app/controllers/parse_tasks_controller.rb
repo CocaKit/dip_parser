@@ -19,7 +19,7 @@ class ParseTasksController < ApplicationController
 # GET /parse_tasks/1/edit
 	def edit
 		if @parse_task.status != 1
-			redirect_to parse_tasks_urlm, alert: "Parse task is in progress or finished."
+			redirect_to parse_tasks_url, alert: "Parse task is in progress or finished."
 		end
 	end
 
@@ -29,7 +29,7 @@ class ParseTasksController < ApplicationController
 
 		respond_to do |format|
 			if @parse_task.save
-				format.html { redirect_to parse_task_url(@parse_task), notice: "Parse task was successfully created." }
+				format.html { redirect_to parse_tasks_url, notice: "Parse task #{@parse_task.name} was successfully created." }
 #			format.json { render :show, status: :created, location: @parse_task }
 			else
 				format.html { render :new, status: :unprocessable_entity }
@@ -42,7 +42,7 @@ class ParseTasksController < ApplicationController
 	def update
 		respond_to do |format|
 			if @parse_task.update(name: @name, web_site: @web_site, status: @status, category_names: @category_names, page_urls: @page_urls)
-				format.html { redirect_to parse_task_url(@parse_task), notice: "Parse task was successfully updated." }
+				format.html { redirect_to parse_tasks_url, notice: "Parse task #{@name} was successfully updated." }
 #				format.json { render :show, status: :ok, location: @parse_task }
 			else
 				format.html { render :edit, status: :unprocessable_entity }
@@ -53,27 +53,28 @@ class ParseTasksController < ApplicationController
 
 # DELETE /parse_tasks/1 or /parse_tasks/1.json
 	def destroy
-		if @parse_task.status != 2
-			@parse_task.destroy
-
-			respond_to do |format|
-				format.html { redirect_to parse_tasks_url, notice: "Parse task was successfully destroyed." }
+		respond_to do |format|
+			if @parse_task.status != 2
+				format.html { redirect_to parse_tasks_url, notice: "Parse task #{@parse_task.name}was successfully destroyed." }
+				@parse_task.destroy
 #			format.json { head :no_content }
+			else
+				format.html { redirect_to parse_tasks_url, alert: "Cant delete, because parse task #{@parse_task.name} is in progress." }
 			end
-		else
-			redirect_to parse_tasks_urlm, alert: "Cant delete, because parse task is in progress."
 		end
 	end
 
 	def parse
-		if check_running_job 
-			redirect_to parse_task_url(@parse_task), alert: "Parse failed, task in progress." 
-		else
-			if @parse_task.update(status: 2)
-				redirect_to parse_task_url(@parse_task), notice: "Parse task was successfully added to queue." 
-				LitresBookParseJob.perform_later(@parse_task.page_urls, @parse_task)
-			else 
-				redirect_to parse_task_url(@parse_task), alert: "Parse failed." 
+		respond_to do |format|
+			if check_running_job 
+				format.html { redirect_to parse_tasks_url, alert: "Cant parse, because parse task #{@parse_task.name} is in progress." }
+			else
+				if @parse_task.update(status: 2)
+					format.html { redirect_to parse_tasks_url, notice: "Parse task #{@parse_task.name} was successfully added to queue." }
+					LitresBookParseJob.perform_later(@parse_task)
+				else 
+					format.html { redirect_to parse_tasks_url, alert: "Parse failed." }
+				end
 			end
 		end
 	end

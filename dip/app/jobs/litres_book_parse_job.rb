@@ -2,8 +2,8 @@ class LitresBookParseJob < ApplicationJob
 	queue_as :myjob
 
 
-	def perform(source_urls, parse_task)
-		for source_url in source_urls
+	def perform(parse_task)
+		for source_url in parse_task.page_urls
 			parse_category(source_url)
 		end
 		parse_task.update(status: 3, finish_date: DateTime.now)

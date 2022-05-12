@@ -1,4 +1,10 @@
-<%= render @litres_book %>
-<div>
-	<%= link_to "Back to litres_books", litres_books_path %>
+<div id="navbar">
+	<%= render partial: "navbar" %>
+</div>
+
+<div class="container mt-4">
+	<%= render @litres_book %>
+	<div>
+		<%= link_to "Back to litres_books", litres_books_path %>
+	</div>
 </div>

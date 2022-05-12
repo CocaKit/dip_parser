@@ -1,18 +1,34 @@
 <p style="color: green"><%= notice %></p>
 <p style="color: red"><%= alert %></p>
-
-<h1>Litres books</h1>
-
-<%= turbo_stream_from "search_form" %>
-<div id="search_form">
-	<%= render partial: "form" %>
-</div>
-
-<div>
-	<%= button_to "Export", "/litres_books/export.csv", method: "post" %>
-</div>
-
 <%= turbo_stream_from "litres_books" %>
 <%= turbo_stream_from "litres_books_page" %>
-<div id="litres_books">
+<%= turbo_stream_from "search_form" %>
+
+<div id="navbar">
+	<%= render partial: "navbar" %>
+</div>
+
+<div class="container mt-4">
+	<div class="row">
+		<div class="col-4">
+			<h1>Litres books</h1>
+
+			<div class="vstack gap-3">
+				<div id="search_form">
+					<%= render partial: "form" %>
+				</div>
+
+				<div>
+					<%= button_to "Export", "/litres_books/export.csv", method: "post", class: "btn btn-primary" %>
+				</div>
+			</div>
+		</div>
+		<div class="col-8 border-start">
+			<div id="litres_books">
+				<% if not @litres_books.nil? and @page != 0 %>
+					<%= render partial: "litres_books/list", locals: { litres_books: @litres_books, page_num: @page } %>
+				<% end %>
+			</div>
+		</div>
+	</div>
 </div>

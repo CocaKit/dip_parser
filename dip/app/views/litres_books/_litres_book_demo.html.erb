@@ -1,10 +1,11 @@
-<div id="<%= dom_id litres_book %>">
-	<p>
-		<strong>Name:</strong>
+<td>
+	<a href="<%= litres_book_url(litres_book) %>">
 		<%= litres_book.name %>
-	</p>
-	<p>
-		<strong>Author:</strong>
-		<%= litres_book.author %>
-	</p>
-</div>
+	</a>
+</td>
+<td>
+	<%= litres_book.author %>
+</td>
+<td>
+	<%= litres_book.price %>
+</td>
