@@ -1,0 +1,48 @@
+<%= turbo_stream_from "litres_books" %>
+<%= turbo_stream_from "litres_books_page" %>
+<%= turbo_stream_from "search_form" %>
+
+<div id="navbar">
+	<%= render partial: "layouts/navbar", locals: { active: 3 }%>
+</div>
+
+<div id="tabs">
+	<%= render partial: "layouts/tabs", locals: { active: 2 }%>
+</div>
+
+<div class="container mt-4">
+	<% if not notice.nil?%>
+		<div class="alert alert-success" role="alert">
+			<%= notice %>
+		</div>
+	<% end %>
+
+	<% if not alert.nil?%>
+		<div class="alert alert-danger" role="alert">
+			<%= alert %>
+		</div>
+	<% end %>
+
+	<div class="row">
+		<div class="col-4">
+			<h1>Leonardo products</h1>
+
+			<div class="vstack gap-3">
+				<div id="search_form">
+					<%= render partial: "form" %>
+				</div>
+
+				<div>
+					<%= button_to "Export", "/leonardo_products/export.csv", method: "post", class: "btn btn-primary" %>
+				</div>
+			</div>
+		</div>
+		<div class="col-8 border-start">
+			<div id="leonardo_products">
+				<% if not @leonardo_products.nil? and @page != 0 and not @page.nil?%>
+					<%= render partial: "leonardo_products/list", locals: { leonardo_products: @leonardo_products, page_num: @page } %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

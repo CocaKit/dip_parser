@@ -1,5 +1,18 @@
-<p style="color: green"><%= notice %></p>
-<p style="color: red"><%= alert %></p>
+<div id="navbar">
+	<%= render partial: "layouts/navbar", locals: { active: 2 }%>
+</div>
+
+<% if not notice.nil?%>
+	<div class="alert alert-success" role="alert">
+		<%= notice %>
+	</div>
+<% end %>
+
+<% if not alert.nil?%>
+	<div class="alert alert-danger" role="alert">
+		<%= alert %>
+	</div>
+<% end %>
 
 <%= render @parse_task %>
 

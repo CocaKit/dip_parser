@@ -1,0 +1,2 @@
+class LeonardoCategory < ApplicationRecord
+end

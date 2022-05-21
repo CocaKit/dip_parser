@@ -1,0 +1,52 @@
+<div id="navbar">
+	<%= render partial: "layouts/navbar", locals: { active: 1 }%>
+</div>
+
+<div class="container mt-4">
+	<div class="row">
+		<div class="col-6">
+			<div class="card" >
+				<%= image_tag "litres.jpg", class: "card-img-top "%>
+				<div class="card-body">
+					<h5 class="card-title">Litres</h5>
+					<p class="card-text">Aggregator, distributor and seller of e-books in Russia and CIS countries</p>
+				</div>
+				<ul class="list-group list-group-flush list-group-numbered">
+					<% @litres_genres_and_count.each do |info| %>
+						<li class="list-group-item">
+						<%= info[:name] %>
+						<span class="badge bg-primary rounded-pill"><%= info[:count] %></span>
+						</li>
+					<% end %>
+				</ul>
+				<div class="card-body">
+					<%= link_to "Go to litres books", litres_books_url, class: "card-link" %> 
+				</div>
+			</div>
+		</div>
+		<div class="col-6">
+			<div class="card" >
+				<%= image_tag "leonardo.jpg", class: "card-img-top "%>
+				<div class="card-body">
+					<h5 class="card-title">Leonardo</h5>
+					<p class="card-text">The largest chain of hobby hypermarkets in Russia in Russia and CIS countries</p>
+				</div>
+				<ul class="list-group list-group-flush list-group-numbered">
+					<% @leonardo_categories_and_count.each do |info| %>
+						<li class="list-group-item">
+						<%= info[:name] %>
+						<span class="badge bg-primary rounded-pill"><%= info[:count] %></span>
+						</li>
+					<% end %>
+				</ul>
+				<div class="card-body">
+					<%= link_to "Go to leonardo products", leonardo_products_url, class: "card-link" %> 
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+		</div>
+	</div>
+</div>

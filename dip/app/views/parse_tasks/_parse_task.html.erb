@@ -13,7 +13,7 @@
 			<% if parse_task.web_site == 1 %>
 				Litres
 			<% elsif parse_task.web_site == 2 %>
-				Marka
+				Leonardo
 			<% else %>
 				Something else
 			<% end %>
@@ -21,11 +21,13 @@
 		<div class="card-header">
 			Categories
 		</div>
-		<ul class="list-group list-group-flush">
-			<% parse_task.category_names.each do |name| %>
-				<li class="list-group-item"><%= name %></li>
-			<% end %>
-		</ul>
+		<% if not parse_task.category_names.nil? and not parse_task.page_urls.nil? %>
+			<ul class="list-group list-group-flush">
+				<% parse_task.category_names.each do |name| %>
+					<li class="list-group-item"><%= name %></li>
+				<% end %>
+			</ul>
+		<% end %>
 		<p class="card-text"> 
 			<strong>Finish date:</strong>
 			<%= parse_task.finish_date %>
@@ -33,12 +35,19 @@
 		<% if parse_task.status == 1 %>
 			<%= link_to "Edit this parse task", edit_parse_task_path(parse_task), class: "card-link" %> 
 			<div class="my-2">
-				<%= button_to "Start parsing", parse_parse_task_path(parse_task), method: :put, class: "btn btn-primary" %>
+				<% if not parse_task.category_names.nil? and not parse_task.page_urls.nil?  %>
+					<%= button_to "Start parsing", parse_parse_task_path(parse_task), method: :put, class: "btn btn-primary" %>
+				<% end %>
+			</div>
+		<% end %>
+		<% if parse_task.status == 3 %>
+			<div class="my-2">
+				<%= button_to "Export logs", "/parse_tasks/#{parse_task.id}/export.txt", method: :post, class: "btn btn-primary" %>
 			</div>
 		<% end %>
 		<% if parse_task.status != 2 %>
 			<div class="my-2">
-				<%= button_to "Destroy this parse task", parse_task, method: :delete, class: "btn btn-primary" %>
+				<%= button_to "Destroy", parse_task, method: :delete, class: "btn btn-primary" %>
 			</div>
 		<% end %>
 	</div>

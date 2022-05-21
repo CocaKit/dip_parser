@@ -1,0 +1,7 @@
+<h1>Parse tasks</h1>
+<div id="parse_tasks">
+  <% parse_tasks.each do |parse_task| %>
+	<%= render parse_task %>
+  <% end %>
+</div>
+<%= link_to "New parse task", new_parse_task_path %>

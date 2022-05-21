@@ -10,9 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_03_092758) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_19_135452) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "leonardo_categories", force: :cascade do |t|
+    t.string "name"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "leonardo_products", force: :cascade do |t|
+    t.string "name"
+    t.string "brend"
+    t.float "price"
+    t.string "img"
+    t.boolean "instock"
+    t.float "rating"
+    t.integer "evaluators"
+    t.string "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "category_name"
+    t.string "source_url"
+  end
 
   create_table "litres_books", force: :cascade do |t|
     t.string "main_genre"
@@ -40,6 +62,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_03_092758) do
     t.index ["name"], name: "index_litres_books_on_name"
   end
 
+  create_table "litres_categories", force: :cascade do |t|
+    t.string "name"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "parse_tasks", force: :cascade do |t|
     t.string "name"
     t.integer "web_site"
@@ -49,6 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_03_092758) do
     t.date "finish_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "logs"
   end
 
 end

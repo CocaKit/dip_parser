@@ -1,5 +1,9 @@
-<div class="card text-dark bg-info mb-3" style="max-width: 40rem;">
-  <div class="card-body">
-    <h5 class="card-title"><%= log %></h5>
-  </div>
-</div>
+<% logs.each do |log| %>
+	<div class="card text-dark bg-info mb-3" style="max-width: 40rem;">
+		<div class="card-header"><%= log[:header] %></div>
+		<div class="card-body">
+			<h5 class="card-title"><%= log[:info] %></h5>
+			<p class="card-text"><%= log[:url] %></p>
+		</div>
+	</div>
+<% end %>

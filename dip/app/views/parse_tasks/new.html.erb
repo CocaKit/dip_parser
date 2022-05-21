@@ -1,9 +1,8 @@
-<h1>New parse task</h1>
+<div id="navbar">
+	<%= render partial: "layouts/navbar", locals: { active: 2 }%>
+</div>
 
-<%= render "form", parse_task: @parse_task %>
-
-<br>
-
-<div>
-  <%= link_to "Back to parse tasks", parse_tasks_path %>
+<div class="container mt-4 w-25 bg-primary bg-opacity-25 p-4 border border-3 rounded">
+	<h2>New parse task</h2>
+	<%= render "form_create", parse_task: @parse_task %>
 </div>

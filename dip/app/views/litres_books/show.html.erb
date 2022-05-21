@@ -1,5 +1,9 @@
 <div id="navbar">
-	<%= render partial: "navbar" %>
+	<%= render partial: "layouts/navbar", locals: { active: 3 }%>
+</div>
+
+<div id="tabs">
+	<%= render partial: "layouts/tabs", locals: { active: 1 }%>
 </div>
 
 <div class="container mt-4">

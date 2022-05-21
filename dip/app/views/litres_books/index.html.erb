@@ -1,20 +1,33 @@
-<p style="color: green"><%= notice %></p>
-<p style="color: red"><%= alert %></p>
 <%= turbo_stream_from "litres_books" %>
 <%= turbo_stream_from "litres_books_page" %>
-<%= turbo_stream_from "search_form" %>
+<%= turbo_stream_from "litres_search_form" %>
 
 <div id="navbar">
-	<%= render partial: "navbar" %>
+	<%= render partial: "layouts/navbar", locals: { active: 3 }%>
+</div>
+
+<div id="tabs">
+	<%= render partial: "layouts/tabs", locals: { active: 1 }%>
 </div>
 
 <div class="container mt-4">
-	<div class="row">
-		<div class="col-4">
+	<% if not notice.nil?%>
+		<div class="alert alert-success" role="alert">
+			<%= notice %>
+		</div>
+	<% end %>
+
+	<% if not alert.nil?%>
+		<div class="alert alert-danger" role="alert">
+			<%= alert %>
+		</div>
+	<% end %>
+
+	<div class="row"> <div class="col-4">
 			<h1>Litres books</h1>
 
 			<div class="vstack gap-3">
-				<div id="search_form">
+				<div id="litres_search_form">
 					<%= render partial: "form" %>
 				</div>
 
@@ -25,7 +38,7 @@
 		</div>
 		<div class="col-8 border-start">
 			<div id="litres_books">
-				<% if not @litres_books.nil? and @page != 0 %>
+				<% if not @litres_books.nil? and @page != 0 and not @page.nil?%>
 					<%= render partial: "litres_books/list", locals: { litres_books: @litres_books, page_num: @page } %>
 				<% end %>
 			</div>

@@ -1,0 +1,75 @@
+<%= form_with url: search_leonardo_products_url, class: "row g-3", method: :post do |form| %>
+	<div class="col-md-12">
+		<%= form.label :name, class: "form-label", for: "inputName" %>
+		<%= form.text_field :name, class: "form-control", id: "inputName" %>
+	</div>
+
+	<div class="col-md-12 border-bottom pb-3">
+		<%= form.radio_button :order, "name", class: "form-check-input", checked: true %>
+		<%= form.label :order, "Order by name", class: "form-check-label" %>
+	</div>
+
+	<div class="col-md-12">
+		<%= form.label :brend, class: "form-label", for: "inputBrend" %>
+		<%= form.text_field :brend, class: "form-control", id: "inputBrend" %>
+	</div>
+
+	<div class="col-md-12 border-bottom pb-3">
+		<%= form.radio_button :order, "brend", class: "form-check-input" %>
+		<%= form.label :order, "Order by brend", class: "form-check-label" %>
+	</div>
+
+	<div class="col-md-6"> 
+		<%= form.label :min_rating, class: "form-label", for: "inputMinRating" %>
+		<%= form.number_field :min_rating, in: 0.0..5.0, step: 0.1, value: 0.0, id: "inputMinRating", class: "form-control" %>
+	</div>
+
+	<div class="col-md-6"> 
+		<%= form.label :max_rating, class: "form-label", for: "inputMaxRating" %>
+		<%= form.number_field :max_rating, in: 0.0..5.0, step: 0.1, value: 5.0, id: "inputMaxRating", class: "form-control" %>
+	</div>
+
+	<div class="col-md-12 border-bottom pb-3">
+		<%= form.radio_button :order, "rating", class: "form-check-input" %>
+		<%= form.label :order, "Order by rating", class: "form-check-label" %>
+	</div>
+
+	<div class="col-md-6"> 
+		<%= form.label :min_count_of_evaluators, class: "form-label", for: "inputMinEval" %>
+		<%= form.number_field :min_count_of_evaluators, in: 0..1000000, step: 1, value: 0, id: "inputMinEval", class: "form-control" %>
+	</div>
+
+	<div class="col-md-6"> 
+		<%= form.label :max_count_of_evaluators, class: "form-label", for: "inputMaxEval" %>
+		<%= form.number_field :max_count_of_evaluators, in: 0..1000000, step: 1, value: 1000000, id: "inputMaxEval", class: "form-control" %>
+	</div>
+
+	<div class="col-md-12 border-bottom pb-3">
+		<%= form.radio_button :order, "evaluators", class: "form-check-input" %>
+		<%= form.label :order, "Order by evaluators", class: "form-check-label" %>
+	</div>
+
+	<div class="col-md-6"> 
+		<%= form.label :min_price, class: "form-label", for: "inputMinPrice" %>
+		<%= form.number_field :min_price, in: 0..1000000, step: 1, value: 0, id: "inputMinPrice", class: "form-control" %>
+	</div>
+
+	<div class="col-md-6"> 
+		<%= form.label :max_price, class: "form-label", for: "inputMaxPrice" %>
+		<%= form.number_field :max_price, in: 0..1000000, step: 1, value: 1000000, id: "inputMaxPrice", class: "form-control" %>
+	</div>
+
+	<div class="col-md-12 border-bottom pb-3">
+		<%= form.radio_button :order, "price", class: "form-check-input" %>
+		<%= form.label :order, "Order by price", class: "form-check-label" %>
+	</div>
+
+	<div class="col-md-12">
+		<%= form.label :in_stock, class: "form-ckeck-label", for: "inputInStock" %>
+		<%= form.check_box :instock, class: "form-check-input", id: "inputInStock", checked: true %>
+	</div>
+
+	<div class="col-md-12">
+		<%= form.submit "Search", class: "btn btn-primary" %>
+	</div>
+<% end %>

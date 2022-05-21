@@ -1,9 +1,41 @@
-<h1>Editing parse task</h1>
+<div id="navbar">
+	<%= render partial: "layouts/navbar", locals: { active: 2 }%>
+</div>
 
-<%= render "form", parse_task: @parse_task %>
-
-<br>
-
-<div>
-  <%= link_to "Back to parse tasks", parse_tasks_path %>
+<div class="container mt-4 w-50 bg-primary bg-opacity-25 p-4 border border-3 rounded">
+	<h2>Editing parse task</h2>
+	<%= form_with model: @parse_task, class: "row g-3" do |form| %>
+		<% if @parse_task.errors.any? %>
+			<div style="color: red">
+				<h2><%= pluralize(@parse_task.errors.count, "error") %> prohibited this parse_task from being saved:</h2>
+				<ul>
+					<% @parse_task.errors.each do |error| %>
+						<li><%= error.full_message %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+		<% if @parse_task.web_site == 1 %>
+			<% @categories = LitresCategory.all %>
+		<% elsif @parse_task.web_site == 2%>
+			<% @categories = LeonardoCategory.all %>
+		<% end %>
+		<% if not @categories.nil? %>
+			<% count = 0%>
+			<% @categories.each do |category| %>
+				<div class="col-md-4">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" value="<%= "#{category.url},#{category.name}" %>" id="check_<%= count %>" name="category[]">
+						<label class="form-check-label" for="check_<%= count %>">
+							<%= category.name %>
+						</label>
+					</div>
+					<% count += 1 %>
+				</div>
+			<% end %>
+		<% end %>
+		<div class="col-md-12">
+			<%= form.submit "Create", class: "btn btn-primary" %>
+		</div>
+	<% end %>
 </div>

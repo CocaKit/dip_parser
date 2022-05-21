@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 	resources :parse_tasks do
 		member do
 			put 'parse'
+			post 'export'
 		end
 	end
 
@@ -15,6 +16,18 @@ Rails.application.routes.draw do
 		end
 	end
 
-	root "parse_tasks#index"
+	resources :leonardo_products, only: [:index, :show] do
+		collection do
+			post 'search'
+			post 'export'
+		end
+		member do
+			post 'page'
+		end
+	end
+
+	get 'home', to: "home#index"
+
+	root "home#index"
 end
 

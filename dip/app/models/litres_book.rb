@@ -1,5 +1,5 @@
 class LitresBook < ApplicationRecord
-	after_create_commit { broadcast_append_to('log', partial: 'parse_tasks/log', locals: { log: "Book added to db: #{self.name}" }, target: "log") }
+#after_create_commit { broadcast_append_to('log', partial: 'parse_tasks/log', locals: { header: "Litres.ru", info: "Book added to db: #{self.name}", url: "Db" }, target: "log") }
 
 
 	def self.to_csv

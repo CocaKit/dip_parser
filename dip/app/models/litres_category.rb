@@ -1,0 +1,2 @@
+class LitresCategory < ApplicationRecord
+end

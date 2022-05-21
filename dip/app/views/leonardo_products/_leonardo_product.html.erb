@@ -1,0 +1,42 @@
+<div class="container">
+	<div class="row ">
+		<div class="col">
+			<img width="300" height="500" src="<%= @leonardo_product.img %>" class="rounded" >
+			<p>
+				<strong>Description:</strong>
+				<%= @leonardo_product.desc %>
+			</p>
+		</div>
+		<div class="col">
+			<p>
+				<strong>Category name:</strong>
+				<%= @leonardo_product.category_name %>
+			</p>
+			<p>
+				<strong>Name:</strong>
+				<%= @leonardo_product.name %>
+			</p>
+			<p>
+				<strong>Brend:</strong>
+				<%= @leonardo_product.brend %>
+			</p>
+			<p>
+				<strong>Rating:</strong>
+				<%= @leonardo_product.rating %>
+			</p>
+			<p>
+				<strong>Count of evaluators:</strong>
+				<%= @leonardo_product.evaluators %>
+			</p>
+			<p>
+				<strong>In stock:</strong>
+				<%= @leonardo_product.instock %>
+			</p>
+			<p>
+				<strong>Price:</strong>
+				<%= @leonardo_product.price %>
+			</p>
+		</div>
+	</div>
+</div>
+<%= link_to "To source page", @leonardo_product.source_url %>

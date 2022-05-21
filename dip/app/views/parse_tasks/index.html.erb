@@ -1,25 +1,27 @@
-<p style="color: green"><%= notice %></p>
-<p style="color: red"><%= alert %></p>
+<%= turbo_stream_from "tasks" %>
 <%= turbo_stream_from "log" %>
 
 <div id="navbar">
-	<%= render partial: "navbar" %>
+	<%= render partial: "layouts/navbar", locals: { active: 2 }%>
 </div>
 
 <div class="container mt-4">
-	<div class="row">
-		<div class="col-4">
-			<h1>Parse tasks</h1>
-			<div id="parse_tasks">
-			  <% @parse_tasks.each do |parse_task| %>
-				<%= render parse_task %>
-			  <% end %>
-			</div>
-			<%= link_to "New parse task", new_parse_task_path %>
+	<% if not notice.nil?%>
+		<div class="alert alert-success" role="alert">
+			<%= notice %>
 		</div>
+	<% end %>
 
+	<% if not alert.nil?%> <div class="alert alert-danger" role="alert">
+			<%= alert %>
+		</div>
+	<% end %>
 
-		<div class="col-8 border-start ps-4">
+	<div class="row">
+		<div id="tasks" class="col-4 bg-primary bg-opacity-25 border border-3 rounded p-4">
+			<%= render partial: "tasks", locals: { parse_tasks: @parse_tasks}%>
+		</div>
+		<div class="col-8 ps-4">
 			<h1> Parsing log </h1>
 			<div id="log">
 			</div>

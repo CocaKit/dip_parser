@@ -1,0 +1,30 @@
+<%= form_with model: parse_task,  class: "row g-3" do |form| %>
+
+	<% if parse_task.errors.any? %>
+		<div style="color: red">
+			<h2><%= pluralize(parse_task.errors.count, "error") %> prohibited this parse_task from being saved:</h2>
+			<ul>
+				<% parse_task.errors.each do |error| %>
+					<li><%= error.full_message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="col-md-12">
+		<%= form.label :name, class: "form-label", for: "inputName" %>
+		<%= form.text_field :name, id: "inputName", class: "form-control" %>
+	</div>
+
+	<div class="col-md-12">
+		<%= form.label :web_site, class: "form-label", for: "inputWebSite" %>
+		<select name="web_site" id="inputWebSite" class="form-select">
+			<option value="1">Litres.ru</option>
+			<option value="2">Leonardo.by</option>
+		</select>
+	</div>
+
+	<div class="col-md-12">
+		<%= form.submit "Create", class: "btn btn-primary" %>
+	</div>
+<% end %>

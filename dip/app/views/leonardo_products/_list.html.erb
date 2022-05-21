@@ -1,0 +1,35 @@
+<div class="row g-3">
+	<div class="col-md-12">
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Brend</th>
+					<th scope="col">Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% leonardo_products.each do |leonardo_product| %>
+					<tr>
+						<%= render partial: "leonardo_product_demo", locals: { leonardo_product: leonardo_product } %>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="col-md-4">
+		<%= button_to "Previous page", page_leonardo_product_url(page_num-1), method: "post", class: "btn btn-primary" %>
+	</div>
+	<div class="col-md-4">
+		<div class="text-center">
+			Page <%= page_num %>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="float-end">
+		<%= button_to "Next page", page_leonardo_product_url(page_num+1), method: "post", class: "btn btn-primary" %>
+		</div>
+	</div>
+</div>
+

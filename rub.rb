@@ -25,7 +25,6 @@ def get_produtct_htmls_urls(html_origin)
 		product_full_url = "https://leonardohobby.by/#{i}"
 		product_urls.push(product_full_url)
 		product_htmls.push(Nokogiri::HTML(Curl.get(product_full_url).body_str))
-#		write_log("Found url: #{product_full_url}")
 		puts("Found url: #{product_full_url}")
 		sleep(rand(3))
 	end
